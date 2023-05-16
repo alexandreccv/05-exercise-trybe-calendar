@@ -38,4 +38,22 @@ const criandoDiasDoMes = () => {
 }
 criandoDiasDoMes();
 
+const displayHolidays = () => {
+  const holidayButton = document.querySelector('#btn-holiday'); 
+  const holidays = document.querySelectorAll('.holiday')
+  const backgroundColor = 'rgb(238,238,238)'; 
+  const novaCor = 'yellow'; 
 
+  holidayButton.addEventListener('click', () => {
+    for (let index = 0; index < holidays.length; index += 1) {
+      const currentElement = holidays[index]
+      const elementHaveNewColor = currentElement.style.backgroundColor === novaCor
+      if (elementHaveNewColor) {
+        holidays[index].style.backgroundColor = backgroundColor;
+      } else {
+        holidays[index].style.backgroundColor = novaCor;
+      }
+    }
+  });
+}
+displayHolidays();
