@@ -57,3 +57,23 @@ const displayHolidays = () => {
   });
 }
 displayHolidays();
+
+
+const displayFridays = (fridaysArray) => {
+  const getFridayButton = document.querySelector('#btn-friday');
+  const sextas = document.getElementsByClassName('friday');
+  const novaFraseSexta = 'SEXTA NOVO ';
+
+  getFridayButton.addEventListener('click', () => {
+  for (let index = 0; index < sextas.length; index += 1) {
+    if (sextas[index].innerHTML !== novaFraseSexta) {
+        sextas[index].innerHTML = novaFraseSexta;
+      
+    } else {
+        sextas[index].innerHTML = fridaysArray[index];        
+      }
+    }
+  });
+}
+const decemberFridays = [ 4, 11, 18, 25 ];
+displayFridays(decemberFridays);
