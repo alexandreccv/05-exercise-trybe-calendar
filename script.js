@@ -1,3 +1,4 @@
+//1
 
 const createDaysOfTheWeek = () => {
   const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
@@ -38,6 +39,8 @@ const criandoDiasDoMes = () => {
 }
 criandoDiasDoMes();
 
+//2
+
 const displayHolidays = () => {
   const holidayButton = document.querySelector('#btn-holiday'); 
   const holidays = document.querySelectorAll('.holiday')
@@ -58,7 +61,7 @@ const displayHolidays = () => {
 }
 displayHolidays();
 
-
+//3
 const displayFridays = (fridaysArray) => {
   const getFridayButton = document.querySelector('#btn-friday');
   const sextas = document.getElementsByClassName('friday');
@@ -77,3 +80,24 @@ const displayFridays = (fridaysArray) => {
 }
 const decemberFridays = [ 4, 11, 18, 25 ];
 displayFridays(decemberFridays);
+
+//4
+
+const dayMouseOver = () => {
+  const days = document.querySelector('#days');
+  days.addEventListener('mouseover', (event) => {
+    event.target.style.fontSize = '30px'; 
+  });
+}
+
+const dayMouseOut = () => {
+  const days = document.querySelector('#days');
+  days.addEventListener('mouseout', (event) => {
+    event.target.style.fontSize = '20px'; 
+  });
+}
+
+dayMouseOver();
+dayMouseOut();
+
+//5
