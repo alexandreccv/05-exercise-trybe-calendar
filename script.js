@@ -14,103 +14,101 @@ const createDaysOfTheWeek = () => {
 
 createDaysOfTheWeek();
 
+
 const decemberDaysList = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
-// Escreva seu código abaixo.
-
-//  A tag ul deve conter o id 'days'. 
-//  Seleciona um elemento com o ID "days" no documento HTML e o armazena na variável listaDeDias  
-const listaDeDias = document.querySelector('#days');
+const daysList = document.querySelector('#days');
 
 //  Será responsável por criar e adicionar os dias do mês ao elemento listaDeDias.
-const criandoDiasDoMes = () => {
-  
+const createDaysOfMonth = () => {
+
   for (let index = 0; index < decemberDaysList.length; index += 1) {
     const day = decemberDaysList[index];
-    const dayItem = document.createElement('li');// criando a li
-    dayItem.innerText = day;
-    dayItem.classList.add('day');// atribuindo a classe day
+    const li = document.createElement('li');// criando a li
+    li.innerText = day;
+    li.classList.add('day');// atribuindo a classe day
 
 //  Os dias 24, 25 e 31 são feriados e, além da classe day, devem conter a classe holiday
     if (day === 24 || day === 25 || day === 31) {
-      dayItem.classList.add('holiday');
+      li.classList.add('holiday');
     }
 //  Os dias 4, 11, 18 e 25 são sextas-feiras. Eles devem conter a classe day e a classe friday
     if (day === 4 || day === 11 || day === 18 || day === 25) {
-      dayItem.classList.add('friday');
+      li.classList.add('friday');
     }
-    listaDeDias.appendChild(dayItem);
+    daysList.appendChild(li);
   }
 }
-criandoDiasDoMes();
+createDaysOfMonth();
 
-// Exercício 2 – Implemente uma função que muda a cor de fundo dos dias que possuem a classe "holiday"
-const feriadoButton = document.getElementById('btn-holiday');
-const feriado = document.querySelectorAll('.holiday');
+//2
+
+const btnHoliday = document.getElementById('btn-holiday');
+const holiday = document.querySelectorAll('.holiday');
 const backgroundColor = 'rgb(238,238,238)'; 
-const novaCor = 'yellow'; 
+const newColor = 'yellowgreen'; 
 
-//  Esta funcao sera responsável por mudar a cor de fundo dos elementos com a classe "holiday" quando o botão for clicado.
-const mudaCor = () => {
-  //  E adicionado um ouvinte de eventos para o botão, o código dentro do bloco {} será executado toda vez que o botão for clicado.
-  feriadoButton.addEventListener('click', () => {
-    for (let index = 0; index < feriado.length; index += 1) {
-      const elementoAtual = feriado[index]
-      const novaCorElemento = elementoAtual.style.backgroundColor === novaCor
+const handleColorChange = () => {
 
-      if (novaCorElemento) {
-        feriado[index].style.backgroundColor = backgroundColor;
+  btnHoliday.addEventListener('click', () => {
+    for (let i = 0; i < holiday.length; i += 1) {
+      const currentElement = holiday[i];
+      const newElementColor = currentElement.style.backgroundColor === newColor
+
+      if (newElementColor) {
+        holiday[i].style.backgroundColor = backgroundColor;
       } else {
-        feriado[index].style.backgroundColor = novaCor;
+        holiday[i].style.backgroundColor = newColor
+      }
+    }
+  })
+}
+
+handleColorChange();
+
+// 3
+
+const fridayButton = document.querySelector('#btn-friday');
+const friday = document.getElementsByClassName('friday');
+const newPhraseFriday = 'SEXTOU!'
+
+const modifyFridayText = (arrFriday) => {
+  fridayButton.addEventListener('click', () => {
+    for (let index = 0; index < friday.length; index += 1) {
+      if (friday[index].innerHTML !== newPhraseFriday) {
+          friday[index].innerHTML = newPhraseFriday;
+      } else {
+
+        friday[index].innerHTML = arrFriday[index];
       }
     }
   });
 }
-mudaCor();
 
-//  Exercício 3 – Implemente uma função que modifica o texto exibido nos dias que são sextas-feiras.
+const arrFriday = [ 4, 11, 18, 25 ];
+modifyFridayText(arrFriday);
 
-const sextaButton = document.querySelector('#btn-friday');
-const sextas = document.getElementsByClassName('friday');
-const novaFraseSexta = 'SEXTOU ';
 
-//  Essa função recebe um parâmetro arraySexta, um array de números representando os dias de sexta-feira de dezembro.
-const displayFridays = (arraySexta) => {
+// 4
 
-  sextaButton.addEventListener('click', () => {
-  for (let index = 0; index < sextas.length; index += 1) {
-    if (sextas[index].innerHTML !== novaFraseSexta) {
-        sextas[index].innerHTML = novaFraseSexta;
-      
-    } else {
-        sextas[index].innerHTML = arraySexta[index];        
-      }
-    }
-  });
-}
-const decemberSextas = [ 4, 11, 18, 25 ];
-displayFridays(decemberSextas);
 
-//  Exercício 4 – Implemente duas funções que criem um efeito de "zoom"
-//  Este elemento contem os dias do mês que serão afetados pelos eventos de mouseover e mouseout.
-const days = document.querySelector('#days');
 
-const dayMouseOver = () => {
-  days.addEventListener('mouseover', (event) => {
-    event.target.style.fontSize = '30px'; 
-  });
-}
-const dayMouseOut = () => {
-  days.addEventListener('mouseout', (event) => {
-    event.target.style.fontSize = '20px'; 
+const numbersMouseOver = () => {
+  daysList.addEventListener('mouseover',(event) => {
+    event.target.style.fontSize = '30px';
   });
 }
 
-dayMouseOver();
-dayMouseOut();
+const numbersMouseOut = () => {
+  daysList.addEventListener('mouseout',(event) => {
+    event.target.style.fontSize = '20px';
+  });
+}
 
-//  Exercício 5 - Implemente uma função que seleciona uma tarefa e atribua a cor da tarefa ao dia do calendário
-//  A primeira para selecionar e desmarcar a tarefa, 
+numbersMouseOver();
+numbersMouseOut();
+
+//5 -  bonus
 
 const setTaskClass = () => {
   let tasks = document.getElementsByClassName('task');
@@ -156,8 +154,7 @@ const setDayColor = () => {
 
 setDayColor();
 
-//  6
-
+// 6 
 const addNewTask = () => {
   const getInputField = document.querySelector('#task-input');
   const addInputButton = document.querySelector('#btn-add');
@@ -187,4 +184,3 @@ const addNewTask = () => {
 }
 
 addNewTask();
-
